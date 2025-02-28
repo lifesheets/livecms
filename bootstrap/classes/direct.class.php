@@ -22,4 +22,16 @@ class direct {
         return getStringLength($get) > 0 ? $get : 'no_data';
     }
 
+    /**
+     * Перевіряє існування файлу за вказаним шляхом.
+     *
+     * @param string $path Шлях до файлу відносно кореневої директорії
+     * @return bool true, якщо файл існує, інакше false
+     */
+
+    public static function e_file(string $path): bool
+    {
+        return is_file(ROOT_DIR . '/' . $path);
+    }
+
 }
