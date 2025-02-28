@@ -12,6 +12,10 @@
   RewriteCond %{REQUEST_FILENAME} !-f
 </IfModule>
 
+<IfModule php_value>
+ # Вимикаємо реєстрацію глобальних змінних
+  php_value register_globals 0
+</IfModule>
 # Встановлюємо типи файлів для мобільних пристроїв
 AddType text/vnd.wap.wml;charset=utf-8 .wml
 AddType application/vnd.sonyericsson.mms-template tpl
