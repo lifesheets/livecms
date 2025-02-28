@@ -3,6 +3,11 @@
   Header set Referrer-Policy "no-referrer-when-downgrade"
 </ifModule>
 
+<IfModule mod_rewrite.c>
+  # Включаємо механізм перезапису URL
+  RewriteEngine On
+</IfModule>
+
 # Встановлюємо типи файлів для мобільних пристроїв
 AddType text/vnd.wap.wml;charset=utf-8 .wml
 AddType application/vnd.sonyericsson.mms-template tpl
