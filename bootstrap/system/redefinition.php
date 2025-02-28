@@ -35,3 +35,20 @@ function _filter(string $data): string {
     return remove_script(addslashes(htmlspecialchars($data, ENT_QUOTES, 'UTF-8')));
 }
 
+/**
+ * Виконує редирект на вказану ссылку.
+ *
+ * @param string $url Ссилка для перенаправлення.
+ * @param int $refresh Час затримки в секундах перед перенаправленням. За замовчуванням 0 — без затримки.
+ * @return void
+ */
+
+function redirect(string $url, int $refresh = 0): void
+{
+    # Використовуємо оператор if для вибору між негайним редиректом і редиректом з затримкою
+    $refresh <= 0
+        ? header('Location: ' . $url)                       // Виконуємо редирект без затримки
+        : header('Refresh: ' . $refresh . '; URL=' . $url); // Виконуємо редирект з затримкою
+    # Завершуємо виконання скрипта після редиректу
+    exit();
+}
