@@ -20,3 +20,18 @@ function remove_script(?string $string = null): string {
     return str_ireplace(array_merge($dangerous_tags, $dangerous_events), '', $string);
 }
 
+/**
+ * Фільтрує вхідні дані, захищаючи від XSS та SQL-ін'єкцій
+ * @param string $data Вхідний рядок
+ * @return string Очищений рядок
+ */
+
+function _filter(string $data): string {
+    # Перевіряємо, що строка не порожня
+    if ($data === '') {
+        return '';
+    }
+    # Використовуємо htmlspecialchars для екранування спеціальних символів
+    return remove_script(addslashes(htmlspecialchars($data, ENT_QUOTES, 'UTF-8')));
+}
+
