@@ -22,6 +22,10 @@
   # Встановлюємо безстроковий термін життя cookie для сесій
   php_value session.cookie_lifetime 0
 </IfModule>
+
+# Встановлюємо кодування за замовчуванням UTF-8
+AddDefaultCharset UTF-8
+
 # Встановлюємо типи файлів для мобільних пристроїв
 AddType text/vnd.wap.wml;charset=utf-8 .wml
 AddType application/vnd.sonyericsson.mms-template tpl
