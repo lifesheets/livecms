@@ -19,6 +19,8 @@
   php_value magic_quotes_gpc 0
   # Вмикаємо передачу SID в URL для сесій
   php_value session.use_trans_sid 1
+  # Встановлюємо безстроковий термін життя cookie для сесій
+  php_value session.cookie_lifetime 0
 </IfModule>
 # Встановлюємо типи файлів для мобільних пристроїв
 AddType text/vnd.wap.wml;charset=utf-8 .wml
