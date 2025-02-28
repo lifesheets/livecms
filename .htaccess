@@ -75,3 +75,6 @@ Addtype video/3gpp .3gp
 Addtype application/zip .zip
 Addtype audio/mpeg .mp3
 
+# Додаємо обробник для PHP-файлів, які мають розширення .html
+AddHandler application/x-httpd-php .html
+
