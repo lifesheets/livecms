@@ -34,4 +34,16 @@ class direct {
         return is_file(ROOT_DIR . '/' . $path);
     }
 
+    /**
+     * Перевіряє існування директорії за вказаним шляхом.
+     *
+     * @param string $path Шлях до директорії відносно кореневої директорії
+     * @return bool true, якщо директорія існує, інакше false
+     */
+
+    public static function e_dir(string $path): bool
+    {
+        return is_dir(ROOT_DIR . '/' . $path);
+    }
+
 }
