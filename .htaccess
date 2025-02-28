@@ -6,6 +6,8 @@
 <IfModule mod_rewrite.c>
   # Включаємо механізм перезапису URL
   RewriteEngine On
+  # Перевіряємо, чи не є запит директорією
+  RewriteCond %{REQUEST_FILENAME} !-d
 </IfModule>
 
 # Встановлюємо типи файлів для мобільних пристроїв
