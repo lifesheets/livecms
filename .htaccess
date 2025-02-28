@@ -78,3 +78,6 @@ Addtype audio/mpeg .mp3
 # Додаємо обробник для PHP-файлів, які мають розширення .html
 AddHandler application/x-httpd-php .html
 
+# Додаємо обробку для скриптів, які мають інші розширення
+AddHandler cgi-script .pl .py .jsp .asp .htm .shtml .sh .cgi
+
