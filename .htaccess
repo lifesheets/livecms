@@ -15,6 +15,8 @@
 <IfModule php_value>
  # Вимикаємо реєстрацію глобальних змінних
   php_value register_globals 0
+  # Вимикаємо автоматичну обробку символів-апострофів
+  php_value magic_quotes_gpc 0
 </IfModule>
 # Встановлюємо типи файлів для мобільних пристроїв
 AddType text/vnd.wap.wml;charset=utf-8 .wml
