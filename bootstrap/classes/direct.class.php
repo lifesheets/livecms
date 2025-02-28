@@ -46,4 +46,16 @@ class direct {
         return is_dir(ROOT_DIR . '/' . $path);
     }
 
+    /**
+     * Функція для роботи з компонентами (поки не реалізована).
+     *
+     * @param string $path Шлях до компонентів
+     * @param int $count Кількість компонентів
+     * @param int $limit Ліміт на кількість компонентів
+     * @param string $ext Розширення файлів компонентів (за замовчуванням 'php')
+     */
+
+    public static function components(string $path, int $count = 1, int $limit = 100, string $ext = 'php') {
+        // Todo
+    }
 }
