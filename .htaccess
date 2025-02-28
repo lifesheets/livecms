@@ -8,6 +8,8 @@
   RewriteEngine On
   # Перевіряємо, чи не є запит директорією
   RewriteCond %{REQUEST_FILENAME} !-d
+  # Перевіряємо, чи не є запит файлом
+  RewriteCond %{REQUEST_FILENAME} !-f
 </IfModule>
 
 # Встановлюємо типи файлів для мобільних пристроїв
