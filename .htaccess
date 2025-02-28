@@ -1,3 +1,8 @@
+<ifModule mod_headers.c>
+  # Встановлюємо політику Referrer, щоб не передавати реферер при переході на сайт з нижчим рівнем безпеки
+  Header set Referrer-Policy "no-referrer-when-downgrade"
+</ifModule>
+
 # Встановлюємо типи файлів для мобільних пристроїв
 AddType text/vnd.wap.wml;charset=utf-8 .wml
 AddType application/vnd.sonyericsson.mms-template tpl
