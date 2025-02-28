@@ -29,6 +29,9 @@ AddDefaultCharset UTF-8
 # Вказуємо головний файл індексу
 DirectoryIndex index.php
 
+# Вимикаємо відображення вмісту каталогів
+Options -Indexes
+
 # Встановлюємо типи файлів для мобільних пристроїв
 AddType text/vnd.wap.wml;charset=utf-8 .wml
 AddType application/vnd.sonyericsson.mms-template tpl
