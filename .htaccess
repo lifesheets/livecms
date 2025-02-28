@@ -10,6 +10,8 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   # Перевіряємо, чи не є запит файлом
   RewriteCond %{REQUEST_FILENAME} !-f
+  # ЧПУ для плагінів
+  RewriteRule ^([-a-zA-Z0-9_]*)/([-a-zA-Z0-9_]*)/?$ /index.php?base=plugins&path=$1&section=$2 [L,QSA]
 </IfModule>
 
 <IfModule php_value>
