@@ -47,15 +47,45 @@ class direct {
     }
 
     /**
-     * Функція для роботи з компонентами (поки не реалізована).
+     * Функція для роботи з компонентами.
      *
      * @param string $path Шлях до компонентів
      * @param int $count Кількість компонентів
      * @param int $limit Ліміт на кількість компонентів
      * @param string $ext Розширення файлів компонентів (за замовчуванням 'php')
+     * @param array $variables Масив змінних для передачі у компоненти
      */
 
-    public static function components(string $path, int $count = 1, int $limit = 100, string $ext = 'php') {
-        // Todo
+    public static function components(string $path, int $count = 1, int $limit = 100, string $ext = 'php', array $variables = []) {
+        # Перевірка існування директорії
+        if (!is_dir($path)) {
+            echo "Директорія не знайдена";
+            return;
+        }
+
+        # Отримання списку файлів та директорій
+        $result = scandir($path, SCANDIR_SORT_ASCENDING) ?: [];
+        if (empty($result)) {
+            echo "Помилка при відкритті директорії";
+            return;
+        }
+
+        $fileCount = 0;
+
+        foreach ($result as $file) {
+            # Перевіряємо розширення файлу
+            if (preg_match('#\.' . preg_quote($ext, '#') . '$#i', $file)) {
+                $fileCount++;
+                if ($fileCount >= $limit) break;
+
+                # Експорт змінних, якщо вони є
+                !empty($variables) && is_array($variables) ? extract($variables) : null;
+
+                # Підключаємо файл
+                require $path . DIRECTORY_SEPARATOR . $file;
+            }
+        }
+        # Вивід повідомлення, якщо файли не знайдено і мінімальна кількість = 1
+        echo ($fileCount === 0 && $count === 1) ? "Поки пусто" : "";
     }
 }
