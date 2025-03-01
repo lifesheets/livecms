@@ -5,7 +5,7 @@
  */
 
 # Завантаження функцій
-$functions_dir = ROOT_DIR . '/bootstrap/functions';
+$functions_dir = ROOT_DIR . '/nucleus/functions';
 if (is_dir($functions_dir)) {
     foreach (glob($functions_dir . '/*.php') as $file_function) {
         require_once $file_function;
@@ -23,7 +23,7 @@ spl_autoload_register(function ($name_class) {
     }
 
     # Формуємо повний шлях до файлу
-    $class_file = ROOT_DIR . '/bootstrap/classes/' . $name_class . '.class.php';
+    $class_file = ROOT_DIR . '/nucleus/classes/' . $name_class . '.class.php';
 
     # Перевіряємо, чи існує файл
     if (is_file($class_file)) {

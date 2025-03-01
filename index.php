@@ -7,5 +7,5 @@ declare(strict_types=1);
 const ROOT_DIR = __DIR__;
 
 # Підключаємо файли системного ядра
-require ROOT_DIR . '/bootstrap/engine.php';
-require ROOT_DIR . '/bootstrap/router.php';
+require ROOT_DIR . '/nucleus/engine.php';
+require ROOT_DIR . '/nucleus/router.php';

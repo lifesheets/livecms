@@ -19,7 +19,7 @@ if (str_contains(REQUEST_URI, 'base=') ||
 }
 
 # Формуємо шлях до головного файлу
-$mainFile = ROOT_DIR . "/bootstrap/modules/main.php";
+$mainFile = ROOT_DIR . "/nucleus/modules/main.php";
 
 # Перевіряємо існування та підключаємо відповідний файл
 if (!direct::e_dir("/$baseUrl/")) {
