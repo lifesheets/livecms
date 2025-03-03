@@ -48,4 +48,32 @@ class db {
         }
     }
 
+    /**
+     * Підключення до бази даних
+     *
+     * Цей метод виконує перевірку підключення до бази даних за допомогою методу
+     * checkConnection та, якщо підключення успішне, зберігає об'єкт PDO для подальшого використання.
+     * Якщо підключення не вдалось, виводиться помилка.
+     *
+     * @param int $status Статус підключення (за замовчуванням 1, не використовується в даному методі)
+     * @return \PDO|null Об'єкт PDO при успішному підключенні або null у разі помилки
+     */
+
+    public static function connect($status = 1) {
+        # Використовуємо перевірку підключення з checkConnection
+        $connectionCheck = self::checkConnection(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+
+        if ($connectionCheck === true) {
+            # Якщо підключення пройшло успішно, виконуємо подальші дії
+            if (!self::$DB) {
+                self::$DB = new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASSWORD, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'"));
+                self::$DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
+            }
+        } else {
+            # Якщо перевірка підключення не пройшла, виводимо помилку
+            echo "Помилка підключення до бази даних: " . $connectionCheck;
+        }
+
+        return self::$DB;
+    }
 }
