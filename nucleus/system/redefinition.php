@@ -96,6 +96,18 @@ function session(string $data, mixed $param = 'no_data'): mixed {
 }
 
 /**
+ * Робота з конфігураційним масивом
+ * @param string $data - Ключ у масиві $config
+ * @param mixed|null $param - Значення (якщо null - тільки читання)
+ * @return mixed - Значення або оновлений параметр
+ */
+
+function config(string $data, mixed $param = null): mixed {
+    global $config;
+    return $param === null ? _filter($config[$data] ?? null) : ($config[$data] = $param);
+}
+
+/**
  * Виконує редирект на вказану ссылку.
  *
  * @param string $url Ссилка для перенаправлення.
