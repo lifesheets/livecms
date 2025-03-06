@@ -6,6 +6,8 @@
         <title> Dashboard </title>
         <!-- Bootstrap css -->
         <link href="/nucleus/libraries/bootstrap/v5.3.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <!-- Icons css -->
+        <link href="/nucleus/libraries/fontawesome/v6.7.2/css/all.min.css" rel="stylesheet" type="text/css">
     </head>
     <body>
 
