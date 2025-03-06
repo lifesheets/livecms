@@ -61,6 +61,17 @@ function get(string $data, int $d = 0): mixed {
 }
 
 /**
+ * Отримання значення з $_POST
+ * @param string $data - Ключ у масиві $_POST
+ * @param int $d - Якщо 0, то фільтруємо значення
+ * @return mixed - Значення або false, якщо параметр відсутній
+ */
+
+function post(string $data, int $d = 0): mixed {
+    return $_POST[$data] ?? false ? ($d === 0 ? remove_script($_POST[$data]) : $_POST[$data]) : false;
+}
+
+/**
  * Виконує редирект на вказану ссылку.
  *
  * @param string $url Ссилка для перенаправлення.
