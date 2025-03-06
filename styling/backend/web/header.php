@@ -6,6 +6,8 @@
     <title> Dashboard </title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="/styling/backend/web/assets/img/favicon.jpg">
+    <!-- Toastr css -->
+    <link href="/nucleus/libraries/toastr/css/toastr.min.css" rel="stylesheet">
     <!-- Bootstrap css -->
     <link href="/nucleus/libraries/bootstrap/v5.3.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- Icons css -->
