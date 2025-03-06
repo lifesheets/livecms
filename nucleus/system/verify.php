@@ -6,5 +6,5 @@
 */
 
 function isPanel(): bool {
-    return str_contains(REQUEST_URI, '/admin/');
+    return str_contains(REQUEST_URI, '/dashboard/');
 }

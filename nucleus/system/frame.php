@@ -13,7 +13,7 @@ function livecms_header(): void {
     // Запобігає MIME sniffing
     header('X-Content-Type-Options: nosniff');
     // Визначаємо, який хедер підключати: бекенд чи фронтенд
-    require ROOT_DIR . (isPanel() ? '/styling/backend/web/header.php' : '/styling/frontend/web/header.php');
+    require ROOT_DIR . (isPanel() ? '/styling/dashboard/header.php' : '/styling/dashboard/header.php');
 }
 
 /**
@@ -23,7 +23,7 @@ function livecms_header(): void {
 
 function livecms_footer(int $exit = 0): void {
     // Визначаємо, який футер підключати: бекенд чи фронтенд
-    require ROOT_DIR . (isPanel() ? '/styling/backend/web/footer.php' : '/styling/frontend/web/footer.php');
+    require ROOT_DIR . (isPanel() ? '/styling/dashboard/footer.php' : '/styling/dashboard/footer.php');
     // Завершуємо вивід буферу
     ob_end_flush();
     // Завершуємо виконання скрипта
