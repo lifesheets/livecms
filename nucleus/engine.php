@@ -8,3 +8,9 @@ require_once ROOT_DIR . '/nucleus/system/autoload.php';
 
 # Масиви для збереження значень
 require_once(ROOT_DIR . '/nucleus/system/constants.php');
+
+# Перевірка та валідація даних
+require_once(ROOT_DIR . '/nucleus/system/verify.php');
+
+# Завантаження основного фрейму
+require_once(ROOT_DIR . '/nucleus/system/frame.php');

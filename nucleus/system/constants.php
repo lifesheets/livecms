@@ -73,4 +73,3 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
 } else {
     define('SCHEME', 'http://');
 }
-
