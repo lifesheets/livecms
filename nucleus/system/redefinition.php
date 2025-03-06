@@ -82,6 +82,20 @@ function cookie(string $name): mixed {
 }
 
 /**
+ * Робота з $_SESSION
+ * @param string $data - Ключ у сесії
+ * @param mixed $param - Значення (за замовчуванням 'no_data' - тільки читання)
+ * @return mixed - Значення або false, якщо параметр відсутній
+ */
+
+function session(string $data, mixed $param = 'no_data'): mixed {
+    if ($param === 'no_data') {
+        return $_SESSION[$data] ?? false ? (!is_array($_SESSION[$data]) ? remove_script($_SESSION[$data]) : $_SESSION[$data]) : false;
+    }
+    return $_SESSION[$data] = $param;
+}
+
+/**
  * Виконує редирект на вказану ссылку.
  *
  * @param string $url Ссилка для перенаправлення.
