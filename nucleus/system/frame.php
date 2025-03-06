@@ -1,5 +1,7 @@
 <?php
 
+use livecms\direct;
+
 /**
  * Встановлення заголовків безпеки та підключення відповідного хедера
  * Захист від XSS та MIME sniffing
@@ -14,3 +16,16 @@ function livecms_header(): void {
     require ROOT_DIR . (isPanel() ? '/styling/backend/web/header.php' : '/styling/frontend/web/header.php');
 }
 
+/**
+ * Підключення відповідного футера та завершення виводу буферу
+ * @param int $exit - якщо 0, виконується вихід з програми
+ */
+
+function livecms_footer(int $exit = 0): void {
+    // Визначаємо, який футер підключати: бекенд чи фронтенд
+    require ROOT_DIR . (isPanel() ? '/styling/backend/web/footer.php' : '/styling/frontend/web/footer.php');
+    // Завершуємо вивід буферу
+    ob_end_flush();
+    // Завершуємо виконання скрипта
+    if ($exit === 0) exit;
+}
