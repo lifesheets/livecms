@@ -14,3 +14,9 @@ if (!empty($_SERVER["REQUEST_URI"])) {
     define('REQUEST_URI', '/');
 }
 
+/**
+ * Визначення поточного системного часу
+ */
+
+define('TM', time());
+
