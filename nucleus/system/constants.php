@@ -24,3 +24,11 @@ define('TM', time());
  * Визначення імені файлу, до якого здійснюється звернення
  */
 
+define('PHP_SELF', _filter($_SERVER['PHP_SELF']));
+
+/**
+ * Визначення домену сайту
+ */
+
+define('HTTP_HOST', _filter($_SERVER['HTTP_HOST']));
+
