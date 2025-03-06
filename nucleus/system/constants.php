@@ -38,3 +38,13 @@ define('HTTP_HOST', _filter($_SERVER['HTTP_HOST']));
 
 define('SERVER_NAME', _filter($_SERVER['SERVER_NAME']));
 
+/**
+ * Визначення реферера (звідки прийшов користувач)
+ */
+
+if (!empty($_SERVER['HTTP_REFERER'])) {
+    define('HTTP_REFERER', _filter($_SERVER['HTTP_REFERER']));
+} else {
+    define('HTTP_REFERER', 'none');
+}
+
