@@ -48,3 +48,13 @@ if (!empty($_SERVER['HTTP_REFERER'])) {
     define('HTTP_REFERER', 'none');
 }
 
+/**
+ * Визначення браузера користувача
+ */
+
+if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+    define('BROWSER', _filter($_SERVER["HTTP_USER_AGENT"]));
+} else {
+    define('BROWSER', 'none');
+}
+
