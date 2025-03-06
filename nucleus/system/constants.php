@@ -1,4 +1,16 @@
 <?php
 
-# Визначаємо повний URL адрес запитаної сторінки
-define('REQUEST_URI', isset($_SERVER["REQUEST_URI"]) ? _filter($_SERVER["REQUEST_URI"]) : '/');
+/**
+ * Визначення повного URL-адресу запитуваної сторінки
+ *
+ * Використовує змінну сервера $_SERVER["REQUEST_URI"].
+ * Якщо значення відсутнє або некоректне, використовується значення за замовчуванням ('/').
+ * Значення фільтрується через функцію _filter() для запобігання потенційним атакам.
+ */
+
+if (!empty($_SERVER["REQUEST_URI"])) {
+    define('REQUEST_URI', _filter($_SERVER["REQUEST_URI"]));
+} else {
+    define('REQUEST_URI', '/');
+}
+
