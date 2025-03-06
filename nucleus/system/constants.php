@@ -58,3 +58,9 @@ if (!empty($_SERVER['HTTP_USER_AGENT'])) {
     define('BROWSER', 'none');
 }
 
+/**
+ * Визначення IP-адреси користувача
+ */
+
+define('IP', _filter(filter_var($_SERVER["REMOTE_ADDR"], FILTER_VALIDATE_IP)));
+
