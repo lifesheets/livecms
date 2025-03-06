@@ -13,6 +13,8 @@
     </head>
     <body>
 
+    <!-- Animate.css -->
+    <link href="/nucleus/libraries/animate/v4.1.1/css/animate.min.css" rel="stylesheet">
     <div id="wrapper">
     </div>
     <div id="right-sidebar" class="animated">
