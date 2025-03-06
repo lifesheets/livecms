@@ -64,3 +64,13 @@ if (!empty($_SERVER['HTTP_USER_AGENT'])) {
 
 define('IP', _filter(filter_var($_SERVER["REMOTE_ADDR"], FILTER_VALIDATE_IP)));
 
+/**
+ * Визначення протоколу (HTTP або HTTPS)
+ */
+
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+    define('SCHEME', 'https://');
+} else {
+    define('SCHEME', 'http://');
+}
+
