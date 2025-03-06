@@ -1,7 +1,3 @@
 <?php
 
-livecms_header();
-
-// Todo
-
-livecms_footer();
+require ROOT_DIR . '/modules/sdr/index.php';
