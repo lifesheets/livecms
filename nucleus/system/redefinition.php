@@ -72,6 +72,16 @@ function post(string $data, int $d = 0): mixed {
 }
 
 /**
+ * Отримання значення з $_COOKIE
+ * @param string $name - Назва cookie
+ * @return mixed - Значення або false, якщо параметр відсутній
+ */
+
+function cookie(string $name): mixed {
+    return $_COOKIE[$name] ?? false ? remove_script($_COOKIE[$name]) : false;
+}
+
+/**
  * Виконує редирект на вказану ссылку.
  *
  * @param string $url Ссилка для перенаправлення.
