@@ -36,17 +36,20 @@ function _filter(string $data): string {
 }
 
 /**
- * Визначення повного URL-адресу запитуваної сторінки
+ * Функція визначення версії сайту (мобільна чи десктопна)
  *
- * Використовує змінну сервера $_SERVER["REQUEST_URI"].
- * Якщо значення відсутнє або некоректне, використовується значення за замовчуванням ('/').
- * Значення фільтрується через функцію _filter() для запобігання потенційним атакам.
+ * @return bool - true, якщо мобільний пристрій, інакше false
  */
 
-if (!empty($_SERVER["REQUEST_URI"])) {
-    define('REQUEST_URI', _filter($_SERVER["REQUEST_URI"]));
-} else {
-    define('REQUEST_URI', '/');
+function type_version(): bool {
+    $mobile_array = [
+        'ipad', 'iphone', 'android', 'pocket', 'palm', 'windows ce', 'windowsce',
+        'cellphone', 'opera mobi', 'ipod', 'small', 'sharp', 'sonyericsson',
+        'symbian', 'opera mini', 'nokia', 'htc_', 'samsung', 'motorola',
+        'smartphone', 'blackberry', 'playstation portable', 'tablet browser'
+    ];
+    $agent = strtolower(BROWSER);
+    return array_any($mobile_array, fn ($value) => str_contains($agent, $value));
 }
 
 /**
