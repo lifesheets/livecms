@@ -5,7 +5,7 @@ namespace livecms;
 define('DB_HOST', 'mariadb-10.2');
 define('DB_NAME', 'livecms');
 define('DB_USER', 'root');
-define('DB_PASSWORD', 'a');
+define('DB_PASSWORD', '');
 
 /*
 -------------------------------
@@ -35,7 +35,7 @@ class db {
      * @return bool|string True якщо підключення успішне, або рядок помилки
      */
 
-    public static function checkConnection($host = "localhost", $name = "livecms", $user = "root", $pass = "usbw") {
+    public static function checkConnection($host = "localhost", $name = "livecms", $user = "root", $pass = "") {
         try {
             # Пробуємо підключитись до бази даних
             $pdo = new \PDO('mysql:host=' . $host . ';dbname=' . $name . ';charset=utf8', $user, $pass, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'"));
@@ -62,9 +62,8 @@ class db {
     public static function connect($status = 1) {
         # Використовуємо перевірку підключення з checkConnection
         $connectionCheck = self::checkConnection(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-
+        # Якщо підключення пройшло успішно, виконуємо подальші дії
         if ($connectionCheck === true) {
-            # Якщо підключення пройшло успішно, виконуємо подальші дії
             if (!self::$DB) {
                 self::$DB = new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASSWORD, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'"));
                 self::$DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
@@ -73,7 +72,6 @@ class db {
             # Якщо перевірка підключення не пройшла, виводимо помилку
             echo "Помилка підключення до бази даних: " . $connectionCheck;
         }
-
         return self::$DB;
     }
 }
