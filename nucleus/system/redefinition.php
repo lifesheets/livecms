@@ -50,6 +50,17 @@ if (!empty($_SERVER["REQUEST_URI"])) {
 }
 
 /**
+ * Отримання значення з $_GET
+ * @param string $data - Ключ у масиві $_GET
+ * @param int $d - Якщо 0, то фільтруємо значення
+ * @return mixed - Значення або false, якщо параметр відсутній
+ */
+
+function get(string $data, int $d = 0): mixed {
+    return $_GET[$data] ?? false ? ($d === 0 ? remove_script($_GET[$data]) : $_GET[$data]) : false;
+}
+
+/**
  * Виконує редирект на вказану ссылку.
  *
  * @param string $url Ссилка для перенаправлення.
