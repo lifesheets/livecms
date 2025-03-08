@@ -74,4 +74,27 @@ class db {
         }
         return self::$DB;
     }
+    /**
+     * Виконання запиту з SQL файлу
+     *
+     * Цей метод дозволяє виконати SQL запити, збережені в файлі. Файл має містити SQL запити,
+     * розділені крапкою з комою.
+     *
+     * @param string $path_file Шлях до файлу, що містить SQL запити
+     * @return int 1, якщо запити успішно виконані, або 0, якщо файл не існує
+     */
+
+    public static function getSqlFile(string $path_file): int
+    {
+        if (file_exists($path_file)) {
+            $file = file_get_contents($path_file);
+            $data = explode(';', $file);
+            foreach ($data as $el) {
+                self::getAdd($el);
+            }
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }
