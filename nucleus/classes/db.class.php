@@ -74,6 +74,27 @@ class db {
         }
         return self::$DB;
     }
+
+    /**
+     * Отримання 1 рядка з таблиці
+     *
+     * Цей метод виконує SQL запит до бази даних і повертає перший рядок результату.
+     * Якщо запит не знайде жодного рядка, метод поверне false або null.
+     *
+     * @param string $query SQL запит, який має бути виконаний
+     * @param array $param Масив параметрів для запиту (за замовчуванням порожній масив)
+     * @return array|null Масив з результатами першого рядка або null, якщо рядок не знайдений
+     */
+
+    public static function getString(string $query, array $param = []): ?array
+    {
+        if (self::connect()) {
+            self::$ST = self::connect()->prepare($query);
+            self::$ST->execute($param);
+            return self::$ST->fetch(\PDO::FETCH_ASSOC);
+        }
+    }
+
     /**
      * Отримання всіх рядків з таблиці
      *
