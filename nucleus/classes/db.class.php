@@ -7,20 +7,17 @@ define('DB_NAME', 'livecms');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
 
-/*
--------------------------------
-Клас для роботи з базою даних
--------------------------------
-*/
+/**
+ * Клас для роботи з базою даних
+ *
+ * Цей клас містить методи для підключення до бази даних, виконання SQL запитів
+ * та отримання результатів з бази даних.
+ */
 
 class db {
-
     # Об'єкти PDO для роботи з базою даних
-    public static $DB = null;
-    public static $ST = null;
-
-    # SQL запит
-    public $QUERY = '';
+    private static $DB = null;
+    private static $ST = null;
 
     /**
      * Перевірка підключення до бази даних
@@ -35,15 +32,18 @@ class db {
      * @return bool|string True якщо підключення успішне, або рядок помилки
      */
 
-    public static function checkConnection($host = "localhost", $name = "livecms", $user = "root", $pass = "") {
+    public static function checkConnection(string $host = DB_HOST, string $name = DB_NAME, string $user = DB_USER, string $pass = DB_PASSWORD): bool|string
+    {
         try {
             # Пробуємо підключитись до бази даних
-            $pdo = new \PDO('mysql:host=' . $host . ';dbname=' . $name . ';charset=utf8', $user, $pass, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'"));
+            $pdo = new \PDO('mysql:host=' . $host . ';dbname=' . $name . ';charset=utf8', $user, $pass, [
+                \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'"
+            ]);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            # Якщо підключення пройшло успішно
+            # Підключення успішне
             return true;
         } catch (\PDOException $e) {
-            # Якщо не вдалося підключитись, виводимо помилку
+            # Виводимо помилку
             return $e->getMessage();
         }
     }
@@ -51,26 +51,24 @@ class db {
     /**
      * Підключення до бази даних
      *
-     * Цей метод виконує перевірку підключення до бази даних за допомогою методу
-     * checkConnection та, якщо підключення успішне, зберігає об'єкт PDO для подальшого використання.
-     * Якщо підключення не вдалось, виводиться помилка.
+     * Цей метод встановлює підключення до бази даних, якщо воно ще не було створене,
+     * і повертає об'єкт PDO для подальших операцій з базою даних.
+     * Якщо підключення не вдається, виводиться повідомлення про помилку.
      *
-     * @param int $status Статус підключення (за замовчуванням 1, не використовується в даному методі)
      * @return \PDO|null Об'єкт PDO при успішному підключенні або null у разі помилки
      */
 
-    public static function connect($status = 1) {
-        # Використовуємо перевірку підключення з checkConnection
-        $connectionCheck = self::checkConnection(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-        # Якщо підключення пройшло успішно, виконуємо подальші дії
-        if ($connectionCheck === true) {
+    public static function connect(): ?\PDO
+    {
+        # Перевірка підключення
+        if (self::checkConnection(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD) === true) {
             if (!self::$DB) {
-                self::$DB = new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASSWORD, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'"));
+                self::$DB = new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASSWORD, [\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'"]);
                 self::$DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
             }
         } else {
-            # Якщо перевірка підключення не пройшла, виводимо помилку
-            echo "Помилка підключення до бази даних: " . $connectionCheck;
+            echo "Помилка підключення до бази даних.";
+            exit();
         }
         return self::$DB;
     }
