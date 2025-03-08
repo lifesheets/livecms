@@ -1,19 +1,17 @@
 <?php
 
-use livecms\direct;
-
 /**
  * Встановлення заголовків безпеки та підключення відповідного хедера
- * Захист від XSS та MIME sniffing
+ * Захист від XSS атак та MIME sniffing
  */
 
 function livecms_header(): void {
-    // Захист від XSS атак
     header('X-XSS-Protection: 1; mode=block');
-    // Запобігає MIME sniffing
     header('X-Content-Type-Options: nosniff');
-    // Визначаємо, який хедер підключати: бекенд чи фронтенд
-    require ROOT_DIR . (isPanel() ? '/styling/dashboard/header.php' : '/styling/dashboard/header.php');
+    $module = get_module_from_url(REQUEST_URI);
+    $headerPath = ROOT_DIR . "/modules/$module/template/header.php";
+    error_log("Header path: $headerPath");
+    file_exists($headerPath) ? require_once $headerPath : error_log("Header not found for module: $module");
 }
 
 /**
@@ -22,10 +20,21 @@ function livecms_header(): void {
  */
 
 function livecms_footer(int $exit = 0): void {
-    // Визначаємо, який футер підключати: бекенд чи фронтенд
-    require ROOT_DIR . (isPanel() ? '/styling/dashboard/footer.php' : '/styling/dashboard/footer.php');
-    // Завершуємо вивід буферу
+    $module = get_module_from_url(REQUEST_URI);
+    $footerPath = ROOT_DIR . "/modules/$module/template/footer.php";
+    error_log("Footer path: $footerPath");
+    file_exists($footerPath) ? require_once $footerPath : error_log("Footer not found for module: $module");
     ob_end_flush();
-    // Завершуємо виконання скрипта
-    if ($exit === 0) exit;
+    if (!$exit) exit;
+}
+
+/**
+ * Функція для автоматичного визначення модуля з URL
+ * Визначає перший сегмент шляху як ім’я модуля
+ * @param string $url - URL, з якого буде отримано модуль
+ * @return string - ім’я модуля
+ */
+
+function get_module_from_url(string $url): string {
+    return strtok(parse_url($url, PHP_URL_PATH), '/');
 }
