@@ -75,6 +75,25 @@ class db {
         return self::$DB;
     }
     /**
+     * Оновлення/видалення рядка в таблиці
+     *
+     * Цей метод виконує SQL запит для оновлення або видалення запису з таблиці.
+     * Повертає true, якщо операція успішна, і false в разі помилки.
+     *
+     * @param string $query SQL запит для оновлення або видалення запису
+     * @param array $param Масив параметрів для запиту (за замовчуванням порожній масив)
+     * @return bool True, якщо операція вдала, або false у разі помилки
+     */
+
+    public static function getSet(string $query, array $param = []): bool
+    {
+        if (self::connect()) {
+            self::$ST = self::connect()->prepare($query);
+            return self::$ST->execute($param);
+        }
+    }
+
+    /**
      * Виконання запиту з SQL файлу
      *
      * Цей метод дозволяє виконати SQL запити, збережені в файлі. Файл має містити SQL запити,
