@@ -75,6 +75,26 @@ class db {
         return self::$DB;
     }
     /**
+     * Отримання всіх рядків з таблиці
+     *
+     * Цей метод виконує SQL запит до бази даних і повертає всі рядки результату.
+     * Використовується для отримання множини рядків із таблиці або декількох записів.
+     *
+     * @param string $query SQL запит, який має бути виконаний
+     * @param array $param Масив параметрів для запиту (за замовчуванням порожній масив)
+     * @return \PDOStatement|null Об'єкт PDOStatement, що містить усі рядки результату
+     */
+
+    public static function getStringAll(string $query, array $param = []): ?\PDOStatement
+    {
+        if (self::connect()) {
+            self::$ST = self::connect()->prepare($query);
+            self::$ST->execute($param);
+            return self::$ST;
+        }
+    }
+
+    /**
      * Отримання 1 стовпця з таблиці
      *
      * Цей метод виконує SQL запит і повертає значення першого стовпця першого рядка результату.
